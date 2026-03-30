@@ -4,15 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>강치훈 | iOS Developer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #0a0a0a;
-      color: #e5e5e5;
+      font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #fafafa;
+      color: #374151;
       line-height: 1.6;
     }
 
@@ -35,8 +34,8 @@
       left: -50%;
       width: 200%;
       height: 200%;
-      background: radial-gradient(circle at 30% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
-                  radial-gradient(circle at 70% 50%, rgba(147, 51, 234, 0.06) 0%, transparent 50%);
+      background: radial-gradient(circle at 30% 50%, rgba(59, 130, 246, 0.06) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 50%, rgba(147, 51, 234, 0.04) 0%, transparent 50%);
       animation: rotate 20s linear infinite;
     }
 
@@ -53,27 +52,27 @@
     .hero h1 {
       font-size: clamp(2.5rem, 6vw, 4.5rem);
       font-weight: 700;
-      color: #fff;
+      color: #111827;
       margin-bottom: 0.5rem;
       letter-spacing: -0.02em;
     }
 
     .hero .subtitle {
       font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-      color: #a3a3a3;
+      color: #6b7280;
       margin-bottom: 0.5rem;
       font-weight: 400;
     }
 
     .hero .career {
       font-size: 0.9rem;
-      color: #525252;
+      color: #9ca3af;
       margin-bottom: 1.5rem;
     }
 
     .hero .tagline {
       font-size: 1rem;
-      color: #737373;
+      color: #6b7280;
       max-width: 540px;
       margin: 0 auto 2rem;
       line-height: 1.8;
@@ -87,19 +86,19 @@
     }
 
     .hero-links a {
-      color: #a3a3a3;
+      color: #6b7280;
       text-decoration: none;
       font-size: 0.9rem;
       padding: 0.6rem 1.2rem;
-      border: 1px solid #262626;
+      border: 1px solid #e5e7eb;
       border-radius: 8px;
       transition: all 0.2s;
     }
 
     .hero-links a:hover {
-      color: #fff;
-      border-color: #525252;
-      background: #171717;
+      color: #111827;
+      border-color: #9ca3af;
+      background: #f3f4f6;
     }
 
     /* Scroll indicator */
@@ -115,7 +114,7 @@
       display: block;
       width: 2px;
       height: 40px;
-      background: linear-gradient(to bottom, #525252, transparent);
+      background: linear-gradient(to bottom, #d1d5db, transparent);
       margin: 0 auto;
       animation: scrollPulse 2s ease-in-out infinite;
     }
@@ -135,7 +134,7 @@
     /* Section */
     section {
       padding: 5rem 0;
-      border-top: 1px solid #1a1a1a;
+      border-top: 1px solid #e5e7eb;
     }
 
     section h2 {
@@ -143,14 +142,14 @@
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.15em;
-      color: #525252;
+      color: #9ca3af;
       margin-bottom: 3rem;
     }
 
     /* About */
     .about-text {
       font-size: 1.05rem;
-      color: #d4d4d4;
+      color: #374151;
       line-height: 1.9;
     }
 
@@ -158,11 +157,11 @@
     .section-subtitle {
       font-size: 1.1rem;
       font-weight: 600;
-      color: #e5e5e5;
+      color: #111827;
       margin-top: 3rem;
       margin-bottom: 1.5rem;
       padding-bottom: 0.5rem;
-      border-bottom: 1px solid #1f1f1f;
+      border-bottom: 1px solid #e5e7eb;
     }
 
     .section-subtitle:first-of-type {
@@ -177,7 +176,7 @@
 
     .about-bullets li {
       font-size: 0.95rem;
-      color: #a3a3a3;
+      color: #4b5563;
       line-height: 1.8;
       padding-left: 1rem;
       position: relative;
@@ -188,7 +187,7 @@
       content: '—';
       position: absolute;
       left: 0;
-      color: #404040;
+      color: #d1d5db;
     }
 
     .about-bullets li ul {
@@ -198,33 +197,33 @@
 
     .about-bullets li ul li {
       padding-left: 1rem;
-      color: #737373;
+      color: #6b7280;
       font-size: 0.9rem;
     }
 
     .about-bullets li ul li::before {
       content: '·';
-      color: #404040;
+      color: #d1d5db;
     }
 
     /* Emphasis styles — PDF 강조 스타일 반영 */
     strong, b {
-      color: #fff;
+      color: #111827;
       font-weight: 600;
     }
 
     code {
       font-family: 'SF Mono', 'Fira Code', monospace;
       font-size: 0.85em;
-      color: #60a5fa;
-      background: rgba(96, 165, 250, 0.08);
+      color: #2563eb;
+      background: rgba(37, 99, 235, 0.06);
       padding: 0.15em 0.4em;
       border-radius: 3px;
     }
 
     .about-paragraph {
       font-size: 0.95rem;
-      color: #737373;
+      color: #6b7280;
       line-height: 1.9;
       margin-top: 1.5rem;
     }
@@ -243,7 +242,7 @@
 
     .exp-period {
       font-size: 0.85rem;
-      color: #525252;
+      color: #9ca3af;
       padding-top: 0.3rem;
       font-variant-numeric: tabular-nums;
     }
@@ -251,19 +250,19 @@
     .exp-title h3 {
       font-size: 1.2rem;
       font-weight: 700;
-      color: #fff;
+      color: #111827;
       margin-bottom: 0.2rem;
     }
 
     .exp-role {
       font-size: 0.95rem;
-      color: #a3a3a3;
+      color: #6b7280;
       margin-bottom: 0.3rem;
     }
 
     /* Project inside experience */
     .exp-project {
-      border-left: 2px solid #1f1f1f;
+      border-left: 2px solid #e5e7eb;
       padding-left: 1.5rem;
       margin-bottom: 2.5rem;
       margin-left: 0;
@@ -272,37 +271,37 @@
     .exp-project h4 {
       font-size: 1rem;
       font-weight: 600;
-      color: #e5e5e5;
+      color: #1f2937;
       margin-bottom: 0.2rem;
     }
 
     .exp-project h4 a {
-      color: #e5e5e5;
+      color: #1f2937;
       text-decoration: none;
-      border-bottom: 1px solid #404040;
+      border-bottom: 1px solid #d1d5db;
       transition: border-color 0.2s;
     }
 
     .exp-project h4 a:hover {
-      border-color: #a3a3a3;
+      border-color: #6b7280;
     }
 
     .exp-project .project-meta {
       font-size: 0.85rem;
-      color: #525252;
+      color: #9ca3af;
       margin-bottom: 0.3rem;
     }
 
     .exp-project .project-desc {
       font-size: 0.9rem;
-      color: #a3a3a3;
+      color: #6b7280;
       margin-bottom: 0.75rem;
       font-weight: 500;
     }
 
     .exp-desc {
       font-size: 0.88rem;
-      color: #737373;
+      color: #4b5563;
       line-height: 1.8;
     }
 
@@ -317,7 +316,7 @@
       content: '—';
       position: absolute;
       left: 0;
-      color: #404040;
+      color: #d1d5db;
     }
 
     .exp-desc li ul {
@@ -327,13 +326,13 @@
 
     .exp-desc li ul li {
       padding-left: 1rem;
-      color: #5a5a5a;
+      color: #6b7280;
       font-size: 0.85rem;
     }
 
     .exp-desc li ul li::before {
       content: '·';
-      color: #404040;
+      color: #d1d5db;
     }
 
     /* Tech tags */
@@ -344,7 +343,7 @@
 
     .tech-label {
       font-size: 0.75rem;
-      color: #525252;
+      color: #9ca3af;
       font-weight: 600;
       margin-bottom: 0.4rem;
       text-transform: uppercase;
@@ -360,10 +359,11 @@
 
     .tech-stack span {
       font-size: 0.75rem;
-      color: #737373;
+      color: #4b5563;
       padding: 0.2rem 0.6rem;
-      border: 1px solid #262626;
+      border: 1px solid #e5e7eb;
       border-radius: 4px;
+      background: #f9fafb;
     }
 
     /* Stats */
@@ -376,21 +376,22 @@
 
     .stat-item {
       padding: 1.25rem;
-      border: 1px solid #1a1a1a;
+      border: 1px solid #e5e7eb;
       border-radius: 12px;
       text-align: center;
+      background: #fff;
     }
 
     .stat-value {
       font-size: 1.5rem;
       font-weight: 700;
-      color: #fff;
+      color: #111827;
       margin-bottom: 0.25rem;
     }
 
     .stat-label {
       font-size: 0.8rem;
-      color: #525252;
+      color: #9ca3af;
     }
 
     /* Skills */
@@ -403,7 +404,7 @@
     .skill-category h3 {
       font-size: 0.85rem;
       font-weight: 600;
-      color: #a3a3a3;
+      color: #6b7280;
       margin-bottom: 1rem;
     }
 
@@ -413,13 +414,13 @@
 
     .skill-list li {
       font-size: 0.9rem;
-      color: #737373;
+      color: #6b7280;
       padding: 0.35rem 0;
       transition: color 0.2s;
     }
 
     .skill-list li:hover {
-      color: #e5e5e5;
+      color: #111827;
     }
 
     /* Other Experience */
@@ -433,19 +434,19 @@
     .other-item h3 {
       font-size: 1rem;
       font-weight: 600;
-      color: #fff;
+      color: #111827;
       margin-bottom: 0.2rem;
     }
 
     .other-item p {
       font-size: 0.88rem;
-      color: #737373;
+      color: #6b7280;
       line-height: 1.7;
     }
 
     .other-item .other-role {
       font-size: 0.9rem;
-      color: #a3a3a3;
+      color: #6b7280;
       margin-bottom: 0.5rem;
     }
 
@@ -457,7 +458,7 @@
 
     .vision-list li {
       font-size: 0.95rem;
-      color: #a3a3a3;
+      color: #4b5563;
       line-height: 1.8;
       padding-left: 1.5rem;
       position: relative;
@@ -469,7 +470,7 @@
       content: counter(vision) ".";
       position: absolute;
       left: 0;
-      color: #525252;
+      color: #9ca3af;
       font-weight: 600;
     }
 
@@ -484,13 +485,13 @@
     .edu-item h3 {
       font-size: 1rem;
       font-weight: 600;
-      color: #fff;
+      color: #111827;
       margin-bottom: 0.2rem;
     }
 
     .edu-item p {
       font-size: 0.9rem;
-      color: #737373;
+      color: #6b7280;
     }
 
     /* Contact */
@@ -501,31 +502,31 @@
     }
 
     .contact-grid a {
-      color: #a3a3a3;
+      color: #6b7280;
       text-decoration: none;
       font-size: 0.9rem;
       padding: 0.75rem 1.5rem;
-      border: 1px solid #262626;
+      border: 1px solid #e5e7eb;
       border-radius: 8px;
       transition: all 0.2s;
     }
 
     .contact-grid a:hover {
-      color: #fff;
-      border-color: #525252;
-      background: #171717;
+      color: #111827;
+      border-color: #9ca3af;
+      background: #f3f4f6;
     }
 
     /* Footer */
     footer {
       padding: 3rem 0;
       text-align: center;
-      border-top: 1px solid #1a1a1a;
+      border-top: 1px solid #e5e7eb;
     }
 
     footer p {
       font-size: 0.8rem;
-      color: #404040;
+      color: #9ca3af;
     }
 
     /* Responsive */
@@ -693,7 +694,7 @@
         <div class="exp-header">
           <div class="exp-period">2022.04 — Present</div>
           <div class="exp-title">
-            <h3><a href="https://www.adenasoft.com/ko-KR/" target="_blank" style="color:#fff;text-decoration:none;border-bottom:1px solid #404040;">AdenaSoft</a>, <a href="https://www.utransfer.com/" target="_blank" style="color:#fff;text-decoration:none;border-bottom:1px solid #404040;">Utransfer</a></h3>
+            <h3><a href="https://www.adenasoft.com/ko-KR/" target="_blank" style="color:#111827;text-decoration:none;border-bottom:1px solid #d1d5db;">AdenaSoft</a>, <a href="https://www.utransfer.com/" target="_blank" style="color:#111827;text-decoration:none;border-bottom:1px solid #d1d5db;">Utransfer</a></h3>
           </div>
         </div>
 
@@ -707,10 +708,10 @@
           <div class="project-meta">2023.11 — Present &middot; iOS Team Lead</div>
           <div class="project-desc">
             KR: 한국 → 세계 58개국 실시간 해외 송금 서비스 &nbsp;|&nbsp;
-            US: <a href="https://us.utransfer.com/ko_KR" target="_blank" style="color:#a3a3a3;text-decoration:none;border-bottom:1px solid #333;">미국 → 세계 5개국 실시간 해외 송금 서비스</a>
+            US: <a href="https://us.utransfer.com/ko_KR" target="_blank" style="color:#6b7280;text-decoration:none;border-bottom:1px solid #d1d5db;">미국 → 세계 5개국 실시간 해외 송금 서비스</a>
           </div>
 
-          <p style="font-size:0.85rem; color:#525252; font-weight:600; margin-bottom:0.75rem;">My Role & Responsibilities</p>
+          <p style="font-size:0.85rem; color:#9ca3af; font-weight:600; margin-bottom:0.75rem;">My Role & Responsibilities</p>
           <ul class="exp-desc">
             <li>효율적인 협업 및 생산성 증대를 위한 프로젝트 아키텍처(<code>MVVM</code>, <code>Clean Architecture</code>) 설계, 코드 컨벤션 및 <code>Git Branch</code> 전략 정립</li>
             <li>전반적인 기술 스택 정의, 업무 분배, 코드 리뷰 진행</li>
@@ -793,7 +794,7 @@
           <div class="project-meta">2023.04 — 2023.11 &middot; iOS Developer</div>
           <div class="project-desc">코인 투자 뉴스 및 커뮤니티 플랫폼</div>
 
-          <p style="font-size:0.85rem; color:#525252; font-weight:600; margin-bottom:0.75rem;">My Role & Responsibilities</p>
+          <p style="font-size:0.85rem; color:#9ca3af; font-weight:600; margin-bottom:0.75rem;">My Role & Responsibilities</p>
           <ul class="exp-desc">
             <li>NESS 출금 내역 화면 개발 및 <code>pagination</code> 방식 개선
               <ul>
@@ -836,7 +837,7 @@
           <div class="project-meta">2022.07 — 2023.11 &middot; iOS Developer</div>
           <div class="project-desc">멀티미디어 웹소설 창작 플랫폼</div>
 
-          <p style="font-size:0.85rem; color:#525252; font-weight:600; margin-bottom:0.75rem;">My Role & Responsibilities</p>
+          <p style="font-size:0.85rem; color:#9ca3af; font-weight:600; margin-bottom:0.75rem;">My Role & Responsibilities</p>
           <ul class="exp-desc">
             <li>초기 버블탭 출시 기여 및 유지보수</li>
             <li>불필요한 서드파티 라이브러리를 제거하여 네이티브 코드로 구현함(<code>ObjectMapper</code> → <code>Codable</code>)으로써 <strong>앱 경량화</strong>에 기여</li>
@@ -907,16 +908,16 @@
       <div class="other-item">
         <div class="exp-period">2022.03 — 2022.07</div>
         <div>
-          <h3><a href="https://prography.org/" target="_blank" style="color:#fff;text-decoration:none;border-bottom:1px solid #404040;">Prography 7th</a></h3>
+          <h3><a href="https://prography.org/" target="_blank" style="color:#111827;text-decoration:none;border-bottom:1px solid #d1d5db;">Prography 7th</a></h3>
           <div class="other-role">iOS Developer</div>
-          <p>영양제 섭취 알림 서비스 <a href="https://github.com/prography7-team6-pilit" target="_blank" style="color:#a3a3a3;text-decoration:none;border-bottom:1px solid #333;">pilit</a> — 영양제 섭취를 잊지 않기 위해 알람 서비스 제공, 일별, 월별 섭취 캘린더 제공</p>
+          <p>영양제 섭취 알림 서비스 <a href="https://github.com/prography7-team6-pilit" target="_blank" style="color:#6b7280;text-decoration:none;border-bottom:1px solid #d1d5db;">pilit</a> — 영양제 섭취를 잊지 않기 위해 알람 서비스 제공, 일별, 월별 섭취 캘린더 제공</p>
         </div>
       </div>
 
       <div class="other-item">
         <div class="exp-period">2021.11 — 2022.01</div>
         <div>
-          <h3>요소수 재고 현황 조회 서비스 <a href="https://github.com/kch1285/Urea-Solution-Inventory-Status" target="_blank" style="color:#fff;text-decoration:none;border-bottom:1px solid #404040;">요소수어딨수</a></h3>
+          <h3>요소수 재고 현황 조회 서비스 <a href="https://github.com/kch1285/Urea-Solution-Inventory-Status" target="_blank" style="color:#111827;text-decoration:none;border-bottom:1px solid #d1d5db;">요소수어딨수</a></h3>
           <div class="other-role">기획, 디자인, iOS 클라이언트 개발</div>
           <p>요소수 대란 당시 전국의 요소수 정보제공 주유소의 요소수 재고 현황 조회 서비스 개발</p>
           <ul class="about-bullets" style="margin-top:0.5rem;">
@@ -932,7 +933,7 @@
         <div>
           <h3>야곰 x Bithumb 테크캠프</h3>
           <div class="other-role">빗썸 테크캠프 교육 수강 및 빗썸 iOS 클론 앱 개발</div>
-          <p>빗썸 iOS 클론 앱 <a href="https://github.com/kch1285/Fake-Bithumb-Assignment" target="_blank" style="color:#a3a3a3;text-decoration:none;border-bottom:1px solid #333;">FakeThumb</a> 개발</p>
+          <p>빗썸 iOS 클론 앱 <a href="https://github.com/kch1285/Fake-Bithumb-Assignment" target="_blank" style="color:#6b7280;text-decoration:none;border-bottom:1px solid #d1d5db;">FakeThumb</a> 개발</p>
           <ul class="about-bullets" style="margin-top:0.5rem;">
             <li>빗썸 Public API, WebSocket API를 사용하여 빗썸 클론 앱 개발</li>
             <li>빗썸의 가상화폐 데이터 제공, 가상화폐 가격의 차트, 호가 정보, 체결현황, 입출금 현황 정보 제공</li>
