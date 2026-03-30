@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>강치훈 | iOS Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0a0a0a;
+      color: #e5e5e5;
+      line-height: 1.6;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 50%, rgba(147, 51, 234, 0.06) 0%, transparent 50%);
+      animation: rotate 20s linear infinite;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero .subtitle {
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      color: #a3a3a3;
+      margin-bottom: 0.5rem;
+      font-weight: 400;
+    }
+
+    .hero .career {
+      font-size: 0.9rem;
+      color: #525252;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero .tagline {
+      font-size: 1rem;
+      color: #737373;
+      max-width: 540px;
+      margin: 0 auto 2rem;
+      line-height: 1.8;
+    }
+
+    .hero-links {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hero-links a {
+      color: #a3a3a3;
+      text-decoration: none;
+      font-size: 0.9rem;
+      padding: 0.6rem 1.2rem;
+      border: 1px solid #262626;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+
+    .hero-links a:hover {
+      color: #fff;
+      border-color: #525252;
+      background: #171717;
+    }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+    }
+
+    .scroll-indicator span {
+      display: block;
+      width: 2px;
+      height: 40px;
+      background: linear-gradient(to bottom, #525252, transparent);
+      margin: 0 auto;
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+
+    /* Container */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Section */
+    section {
+      padding: 5rem 0;
+      border-top: 1px solid #1a1a1a;
+    }
+
+    section h2 {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #525252;
+      margin-bottom: 3rem;
+    }
+
+    /* About */
+    .about-text {
+      font-size: 1.05rem;
+      color: #d4d4d4;
+      line-height: 1.9;
+    }
+
+    /* Section subtitle */
+    .section-subtitle {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #e5e5e5;
+      margin-top: 3rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #1f1f1f;
+    }
+
+    .section-subtitle:first-of-type {
+      margin-top: 2rem;
+    }
+
+    /* About bullets */
+    .about-bullets {
+      list-style: none;
+      margin-top: 1rem;
+    }
+
+    .about-bullets li {
+      font-size: 0.95rem;
+      color: #a3a3a3;
+      line-height: 1.8;
+      padding-left: 1rem;
+      position: relative;
+      margin-bottom: 0.5rem;
+    }
+
+    .about-bullets li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: #404040;
+    }
+
+    .about-bullets li ul {
+      list-style: none;
+      margin-top: 0.3rem;
+    }
+
+    .about-bullets li ul li {
+      padding-left: 1rem;
+      color: #737373;
+      font-size: 0.9rem;
+    }
+
+    .about-bullets li ul li::before {
+      content: '·';
+      color: #404040;
+    }
+
+    .about-paragraph {
+      font-size: 0.95rem;
+      color: #737373;
+      line-height: 1.9;
+      margin-top: 1.5rem;
+    }
+
+    /* Experience */
+    .exp-item {
+      margin-bottom: 4rem;
+    }
+
+    .exp-header {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .exp-period {
+      font-size: 0.85rem;
+      color: #525252;
+      padding-top: 0.3rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .exp-title h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.2rem;
+    }
+
+    .exp-role {
+      font-size: 0.95rem;
+      color: #a3a3a3;
+      margin-bottom: 0.3rem;
+    }
+
+    /* Project inside experience */
+    .exp-project {
+      border-left: 2px solid #1f1f1f;
+      padding-left: 1.5rem;
+      margin-bottom: 2.5rem;
+      margin-left: 0;
+    }
+
+    .exp-project h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #e5e5e5;
+      margin-bottom: 0.2rem;
+    }
+
+    .exp-project h4 a {
+      color: #e5e5e5;
+      text-decoration: none;
+      border-bottom: 1px solid #404040;
+      transition: border-color 0.2s;
+    }
+
+    .exp-project h4 a:hover {
+      border-color: #a3a3a3;
+    }
+
+    .exp-project .project-meta {
+      font-size: 0.85rem;
+      color: #525252;
+      margin-bottom: 0.3rem;
+    }
+
+    .exp-project .project-desc {
+      font-size: 0.9rem;
+      color: #a3a3a3;
+      margin-bottom: 0.75rem;
+      font-weight: 500;
+    }
+
+    .exp-desc {
+      font-size: 0.88rem;
+      color: #737373;
+      line-height: 1.8;
+    }
+
+    .exp-desc li {
+      margin-bottom: 0.4rem;
+      list-style: none;
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .exp-desc li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: #404040;
+    }
+
+    .exp-desc li ul {
+      margin-top: 0.3rem;
+      list-style: none;
+    }
+
+    .exp-desc li ul li {
+      padding-left: 1rem;
+      color: #5a5a5a;
+      font-size: 0.85rem;
+    }
+
+    .exp-desc li ul li::before {
+      content: '·';
+      color: #404040;
+    }
+
+    /* Tech tags */
+    .tech-group {
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .tech-label {
+      font-size: 0.75rem;
+      color: #525252;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .tech-stack {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.5rem;
+    }
+
+    .tech-stack span {
+      font-size: 0.75rem;
+      color: #737373;
+      padding: 0.2rem 0.6rem;
+      border: 1px solid #262626;
+      border-radius: 4px;
+    }
+
+    /* Stats */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .stat-item {
+      padding: 1.25rem;
+      border: 1px solid #1a1a1a;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.25rem;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: #525252;
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 2rem;
+    }
+
+    .skill-category h3 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #a3a3a3;
+      margin-bottom: 1rem;
+    }
+
+    .skill-list {
+      list-style: none;
+    }
+
+    .skill-list li {
+      font-size: 0.9rem;
+      color: #737373;
+      padding: 0.35rem 0;
+      transition: color 0.2s;
+    }
+
+    .skill-list li:hover {
+      color: #e5e5e5;
+    }
+
+    /* Other Experience */
+    .other-item {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .other-item h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.2rem;
+    }
+
+    .other-item p {
+      font-size: 0.88rem;
+      color: #737373;
+      line-height: 1.7;
+    }
+
+    .other-item .other-role {
+      font-size: 0.9rem;
+      color: #a3a3a3;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Vision */
+    .vision-list {
+      list-style: none;
+      counter-reset: vision;
+    }
+
+    .vision-list li {
+      font-size: 0.95rem;
+      color: #a3a3a3;
+      line-height: 1.8;
+      padding-left: 1.5rem;
+      position: relative;
+      margin-bottom: 0.75rem;
+      counter-increment: vision;
+    }
+
+    .vision-list li::before {
+      content: counter(vision) ".";
+      position: absolute;
+      left: 0;
+      color: #525252;
+      font-weight: 600;
+    }
+
+    /* Education */
+    .edu-item {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .edu-item h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.2rem;
+    }
+
+    .edu-item p {
+      font-size: 0.9rem;
+      color: #737373;
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-grid a {
+      color: #a3a3a3;
+      text-decoration: none;
+      font-size: 0.9rem;
+      padding: 0.75rem 1.5rem;
+      border: 1px solid #262626;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+
+    .contact-grid a:hover {
+      color: #fff;
+      border-color: #525252;
+      background: #171717;
+    }
+
+    /* Footer */
+    footer {
+      padding: 3rem 0;
+      text-align: center;
+      border-top: 1px solid #1a1a1a;
+    }
+
+    footer p {
+      font-size: 0.8rem;
+      color: #404040;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .exp-header, .edu-item, .other-item {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+      }
+
+      .exp-period {
+        padding-top: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>강치훈</h1>
+      <p class="subtitle">iOS Developer</p>
+      <p class="career">총 경력 3년 11개월</p>
+      <p class="tagline">
+        사용자 경험 향상을 통해 비즈니스 성장에 기여하는 것을 최우선 가치로 삼으며,
+        맡은 일은 끝까지 책임지는 개발자입니다.
+      </p>
+      <div class="hero-links">
+        <a href="https://github.com/kch1285" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/chihoon-kang" target="_blank">LinkedIn</a>
+        <a href="mailto:rkdclgns1285@gmail.com">Email</a>
+        <a href="tel:010-6589-1286">Phone</a>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <span></span>
+    </div>
+  </section>
+
+  <!-- Introduce -->
+  <section>
+    <div class="container">
+      <h2>Introduce</h2>
+      <p class="about-text">
+        2022년 멀티미디어 웹소설 창작 플랫폼 개발로 커리어를 시작하며 콘텐츠 서비스 전반에 대한 이해를 쌓았습니다.
+        이후 금융 커뮤니티와 국내외 송금 서비스를 개발하며 안정적인 서비스 운영·유지보수 경험과 폭넓은 기술 스택을 확보하였고,
+        현재는 iOS 파트를 리딩하고 있습니다.
+      </p>
+      <br>
+      <p class="about-text">
+        특히 해외 송금 서비스 개발 과정에서 단순 유지보수가 아닌 신규 서비스의 아키텍처 설계부터 개발, 배포, 운영까지
+        전 과정을 주도적으로 경험하며 안정성과 확장성을 중심으로 한 앱 개발을 수행했습니다.
+      </p>
+      <br>
+      <p class="about-text">
+        웹소설·커뮤니티 플랫폼 경험과 핀테크에서의 안정성 중심 개발 경험을 바탕으로,
+        사용자에게 신뢰할 수 있는 경험과 일관된 UI/UX를 제공하는 iOS 환경을 구축하는 데 기여하고자 합니다.
+      </p>
+
+      <!-- 핀테크 서비스 개발 -->
+      <h3 class="section-subtitle">핀테크 서비스 개발</h3>
+      <ul class="about-bullets">
+        <li>핀테크 서비스인 Utransfer KR, Utransfer US 서비스에서 iOS 리드 개발자 역할을 수행하며 MVVM, Clean Architecture 기반의 아키텍처를 주도적으로 설계한 경험이 있습니다.
+          <ul>
+            <li>네트워크, 상태 관리, UI 책임을 명확히 분리한 구조 설계</li>
+            <li>View → ViewModel → Usecase → Repository → Network 의존성 분리 구조 설계</li>
+            <li>상태와 사용자 이벤트를 분리하여 예측 가능한 UI 흐름 구현</li>
+            <li>App Store 배포 및 배포 이후 운영 이슈 대응까지 전 과정 경험</li>
+            <li>글로벌 서비스 특성에 따른 환경별 이슈 대응</li>
+          </ul>
+        </li>
+        <li>Combine을 활용한 단방향 데이터 흐름 아키텍처를 설계한 경험이 있습니다.
+          <ul>
+            <li>Publisher → ViewModel → View로 이어지는 데이터 흐름을 일관되게 관리</li>
+            <li>상태 변화를 단일 진입점에서 제어하여 UI 동기화 이슈 최소화</li>
+            <li>비동기 로직 복잡도를 줄이기 위해 Swift Concurrency(async/await)와 병행 적용</li>
+          </ul>
+        </li>
+      </ul>
+      <p class="about-paragraph">
+        해외 송금 서비스는 단순한 기능 제공을 넘어, 사용자가 신뢰하고 반복적으로 사용할 수 있는 경험을 만드는 것이 핵심이라고 생각했습니다.
+        특히 글로벌 서비스를 대상으로 하다 보니 각국의 상이한 네트워크 환경, 사용자 배경지식, 나라 별 양식 등으로 인해 서비스 운영과 유지보수 과정에서 많은 기술적 고민이 필요했습니다.
+        이러한 환경 속에서 금융 서비스 특성상 발생할 수 있는 잠재적 리스크를 최소화하고, 사용자에게 끊김 없는 송금 경험을 제공하기 위해 기술적인 깊이와 안정성을 지속적으로 고민하며 개발해왔습니다.
+      </p>
+
+      <!-- 멀티미디어 플랫폼 개발 -->
+      <h3 class="section-subtitle">멀티미디어 플랫폼 개발</h3>
+      <ul class="about-bullets">
+        <li>멀티미디어 웹소설 창작 플랫폼 버블탭 개발 당시 AVFoundation, AVPlayer, AVAudioSession 기술을 활용하여 웹소설의 배경음악, 효과음악 기능을 구현한 경험이 있습니다. 사용자가 단순히 읽는 것이 아니라 몰입해서 소비하는 경험을 만드는 것이 목표였습니다.</li>
+        <li>챕터 진입 시 배경음악 자동 재생, 앱 상태 변화에 따른 오디오 상태 관리 등을 구현하며, 콘텐츠 소비 흐름이 끊기지 않도록 세밀한 UX를 설계했습니다.</li>
+        <li>"기능 구현"이 아닌 콘텐츠 소비 경험 전체를 책임진다는 관점으로 개발에 임했고, 이 경험이 이후 콘텐츠·플랫폼 서비스 전반을 바라보는 제 기준이 되었습니다.</li>
+      </ul>
+
+      <!-- 서비스 운영 및 협업 -->
+      <h3 class="section-subtitle">서비스 운영 및 협업</h3>
+      <ul class="about-bullets">
+        <li>Firebase Analytics, Firebase Crashlytics, Braze, AppsFlyer와 같은 모니터링 툴 도입 및 운영을 통해 사용자 행동 분석 및 Crash 관리를 주도했습니다.</li>
+      </ul>
+
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-value">DAU 2.2k</div>
+          <div class="stat-label">Utransfer KR</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">MAU 25k</div>
+          <div class="stat-label">Utransfer KR</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">DAU 0.5k</div>
+          <div class="stat-label">Utransfer US</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">MAU 8.4k</div>
+          <div class="stat-label">Utransfer US</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">14억원/일</div>
+          <div class="stat-label">Utransfer KR — 하루 송금액</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">$361k/일</div>
+          <div class="stat-label">Utransfer US — 하루 송금액</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">99.65%</div>
+          <div class="stat-label">Utransfer KR — Crash Free User</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">99.74%</div>
+          <div class="stat-label">Utransfer US — Crash Free User</div>
+        </div>
+      </div>
+
+      <ul class="about-bullets">
+        <li>iOS 파트장으로서 협업 효율을 높이기 위해 Git Branch 전략을 정립하고 운영한 경험이 있습니다.
+          <ul>
+            <li>버전 이력 관리를 명확히 하기 위해 출시될 앱 버전을 브랜치 이름에 포함시켰습니다.</li>
+            <li>앱 심사 제출 및 배포 후, Develop 브랜치에 버전 태그를 기록하여 추후 버전별 코드를 쉽게 조회할 수 있게끔 하였습니다.</li>
+            <li>CS 이슈가 발생했을 때 어느 버전에서 발생했는지 쉽게 파악이 되어 이슈 대응을 빠르게 할 수 있었습니다.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <!-- 개인 비전 및 성장 -->
+      <h3 class="section-subtitle">개인 비전 및 성장</h3>
+      <p class="about-text">
+        제가 지향하는 개발자는 단순히 문제 해결을 하는 것을 넘어, 사용자의 긍정적인 경험을 이끌어내 장기적인 비즈니스 성장을 위해 기여하는 사람입니다.
+      </p>
+      <ol class="vision-list">
+        <li>문제의 본질을 파악하고 잠재적 리스크를 도출하여 사전 대비하는 개발로 서비스 안정성에 기여하겠습니다.</li>
+        <li>기획/디자인 등 다양한 관점에서 적극적으로 의견을 제시하여 혼자가 아닌 협업의 힘으로 더 나은 프로덕트를 만들어내는 데 기여하겠습니다.</li>
+        <li>새로운 도전에 주저하지 않고 빠른 학습력과 책임감을 통해 목표 달성에 기여할 수 있도록 끊임없이 성장하겠습니다.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Work Experience -->
+  <section>
+    <div class="container">
+      <h2>Work Experience</h2>
+
+      <!-- AdenaSoft -->
+      <div class="exp-item">
+        <div class="exp-header">
+          <div class="exp-period">2022.04 — Present</div>
+          <div class="exp-title">
+            <h3><a href="https://www.adenasoft.com/ko-KR/" target="_blank" style="color:#fff;text-decoration:none;border-bottom:1px solid #404040;">AdenaSoft</a>, <a href="https://www.utransfer.com/" target="_blank" style="color:#fff;text-decoration:none;border-bottom:1px solid #404040;">Utransfer</a></h3>
+          </div>
+        </div>
+
+        <!-- Utransfer KR / US -->
+        <div class="exp-project">
+          <h4>
+            <a href="https://apps.apple.com/kr/app/utransfer-%EC%9C%A0%ED%8A%B8%EB%9E%9C%EC%8A%A4%ED%8D%BC-%ED%95%9C%EA%B5%AD%EC%97%90%EC%84%9C-%EC%A0%84%EC%84%B8%EA%B3%84%EB%A1%9C-%ED%95%B4%EC%99%B8%EC%86%A1%EA%B8%88/id6740383492" target="_blank">Utransfer KR iOS</a>
+            &middot;
+            <a href="https://apps.apple.com/kr/app/utransfer-us-send-money/id6479595784" target="_blank">Utransfer US iOS</a>
+          </h4>
+          <div class="project-meta">2023.11 — Present &middot; iOS Team Lead</div>
+          <div class="project-desc">
+            KR: 한국 → 세계 58개국 실시간 해외 송금 서비스 &nbsp;|&nbsp;
+            US: <a href="https://us.utransfer.com/ko_KR" target="_blank" style="color:#a3a3a3;text-decoration:none;border-bottom:1px solid #333;">미국 → 세계 5개국 실시간 해외 송금 서비스</a>
+          </div>
+
+          <p style="font-size:0.85rem; color:#525252; font-weight:600; margin-bottom:0.75rem;">My Role & Responsibilities</p>
+          <ul class="exp-desc">
+            <li>효율적인 협업 및 생산성 증대를 위한 프로젝트 아키텍처(MVVM, Clean Architecture) 설계, 코드 컨벤션 및 Git Branch 전략 정립</li>
+            <li>전반적인 기술 스택 정의, 업무 분배, 코드 리뷰 진행</li>
+            <li>앱 심사 제출, 심사 거절 대응 및 배포 수행, 릴리즈 노트 작성</li>
+            <li>구글 로그인, 페이스북 로그인, 애플 로그인, 네이버 로그인, 카카오 로그인 기능 개발</li>
+            <li>구글 플레이스 SDK를 이용한 주소 검색 기능 개발
+              <ul>
+                <li>주소 입력 시 구글 플레이스 API를 사용할 경우 비용 과다 방지를 위한 debounce 처리</li>
+              </ul>
+            </li>
+            <li>카카오맵 SDK를 이용한 지도 내 편의점 및 ATM 위치 표기 기능 개발</li>
+            <li>해외 송금, 월렛, KYC, 오픈뱅킹 등 금융 서비스의 핵심(Core) 기능 개발
+              <ul>
+                <li>송금 국가, MSO마다 변하는 코리더를 대응하기 위해 서버 데이터 기반으로 UI 개발</li>
+              </ul>
+            </li>
+            <li>금융 보안원 취약점 점검 대응 및 완료하여 서비스 안정성 확보
+              <ul>
+                <li>카메라 신분증 인증 후 메모리 내 중요 평문 노출 이슈 해결을 위한 인증 완료 시 시스템 tmp 폴더 파일 삭제 적용</li>
+                <li>탈옥, 메모리 덤프 방지를 위해 테스트폰 활용, Dopamine과 Frida를 이용하여 메모리 덤프 테스트 및 대응</li>
+                <li>네이버 클라우드 플랫폼 앱 보안 솔루션 AppSafer 적용</li>
+                <li>캡처 및 녹화 방지 기능을 구현하여 보안 강화</li>
+              </ul>
+            </li>
+            <li>Firebase Analytics, Firebase Crashlytics 도입하여 서비스 안정화에 기여</li>
+            <li>글로벌 서비스 특성에 따른 환경별 이슈 대응 (네트워크 환경, 사용자 배경지식, 나라별 양식 등)</li>
+            <li>App Store 배포 및 배포 이후 운영 이슈 대응까지 전 과정 경험</li>
+          </ul>
+
+          <div class="tech-group">
+            <div class="tech-label">Tech Stack</div>
+            <div class="tech-stack">
+              <span>Git Flow</span>
+              <span>MVVM</span>
+              <span>Clean Architecture</span>
+              <span>async/await</span>
+              <span>Server-driven UI</span>
+              <span>SNS Login</span>
+              <span>XCFramework</span>
+              <span>CoreLocation</span>
+              <span>Apple Login</span>
+              <span>Coordinator</span>
+              <span>FCM</span>
+            </div>
+          </div>
+          <div class="tech-group">
+            <div class="tech-label">3rd Party Library</div>
+            <div class="tech-stack">
+              <span>Google Place</span>
+              <span>Firebase</span>
+              <span>SNS Login</span>
+              <span>KakaoMaps</span>
+              <span>Moya</span>
+            </div>
+          </div>
+          <div class="tech-group">
+            <div class="tech-label">Development Tool</div>
+            <div class="tech-stack">
+              <span>GitLab</span>
+              <span>YouTrack</span>
+              <span>Slack</span>
+              <span>Figma</span>
+              <span>Postman</span>
+              <span>Swagger UI</span>
+            </div>
+          </div>
+          <div class="tech-group">
+            <div class="tech-label">etc.</div>
+            <div class="tech-stack">
+              <span>GA4</span>
+              <span>Braze</span>
+              <span>AppsFlyer</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CoinNess -->
+        <div class="exp-project">
+          <h4><a href="https://apps.apple.com/kr/app/%EC%BD%94%EC%9D%B8%EB%8B%88%EC%8A%A4-%EB%B9%A0%EB%A5%B4%EA%B3%A0-%EC%A0%95%ED%99%95%ED%95%9C-%EC%BD%94%EC%9D%B8-%ED%88%AC%EC%9E%90-%EB%89%B4%EC%8A%A4-%EC%BB%A4%EB%AE%A4%EB%8B%88%ED%8B%B0/id1582601644" target="_blank">CoinNess iOS</a></h4>
+          <div class="project-meta">2023.04 — 2023.11 &middot; iOS Developer</div>
+          <div class="project-desc">코인 투자 뉴스 및 커뮤니티 플랫폼</div>
+
+          <p style="font-size:0.85rem; color:#525252; font-weight:600; margin-bottom:0.75rem;">My Role & Responsibilities</p>
+          <ul class="exp-desc">
+            <li>NESS 출금 내역 화면 개발 및 pagination 방식 개선
+              <ul>
+                <li>collectionView의 contentOffset 값이 셀의 높이와 셀의 수를 곱한 값보다 커질 경우 pagination → 마지막 index && cell count % 20 == 0 방식으로 개선</li>
+              </ul>
+            </li>
+            <li>추천인 코드 공유 및 회원가입 기능 개발
+              <ul>
+                <li>초대 코드를 받아 앱스토어 다운로드 이후 앱 진입 시 초대코드 데이터 보존을 위해 Deferred Deep Linking 사용</li>
+              </ul>
+            </li>
+            <li>글로벌 서비스 확장을 위해 Localizable.strings를 활용하여 다국어 처리</li>
+          </ul>
+
+          <div class="tech-group">
+            <div class="tech-label">Tech Stack</div>
+            <div class="tech-stack">
+              <span>MVVM</span>
+              <span>Combine</span>
+              <span>Firebase Deep Link</span>
+            </div>
+          </div>
+          <div class="tech-group">
+            <div class="tech-label">3rd Party Library</div>
+            <div class="tech-stack">
+              <span>Firebase</span>
+            </div>
+          </div>
+          <div class="tech-group">
+            <div class="tech-label">Development Tool</div>
+            <div class="tech-stack">
+              <span>Height</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- BubbleTap -->
+        <div class="exp-project">
+          <h4><a href="https://apps.apple.com/kr/app/%EB%B2%84%EB%B8%94%EC%B1%97-%EC%86%8C%EC%84%A4%EC%B2%98%EB%9F%BC-%EB%B9%A0%EC%A0%B8%EB%93%9C%EB%8A%94-ai-%EC%B1%84%ED%8C%85/id1637782167" target="_blank">BubbleTap (BubbleChat) iOS</a></h4>
+          <div class="project-meta">2022.07 — 2023.11 &middot; iOS Developer</div>
+          <div class="project-desc">멀티미디어 웹소설 창작 플랫폼</div>
+
+          <p style="font-size:0.85rem; color:#525252; font-weight:600; margin-bottom:0.75rem;">My Role & Responsibilities</p>
+          <ul class="exp-desc">
+            <li>초기 버블탭 출시 기여 및 유지보수</li>
+            <li>불필요한 서드파티 라이브러리를 제거하여 네이티브 코드로 구현함(ObjectMapper → Codable)으로써 앱 경량화에 기여</li>
+            <li>In-App Purchase 기능 개발 및 개선하여 결제 성공/실패 로직의 안정성 확보
+              <ul>
+                <li>중복 인앱결제 이슈가 발생하지 않게 SKPaymentQueue의 transaction이 한 개일 때만 결제 진행</li>
+                <li>결제가 진행되면 버블탭 서버에 영수증 검증을 하여 결제 완료 처리</li>
+              </ul>
+            </li>
+            <li>에피소드 자동 재생 기능 개발
+              <ul>
+                <li>자동 재생 시 기기 화면이 자동으로 꺼지는 이슈가 있어 isIdleTimerDisabled로 대응</li>
+                <li>앱이 inactive, background 상태일 때에도 자동재생되는 이슈가 발생하여 applicationWillResignActive, applicationDidBecomeActive 대응</li>
+              </ul>
+            </li>
+            <li>에피소드 글자 크기 조정 기능 개발
+              <ul>
+                <li>글자 크기 조정 시 말풍선 크기 또한 변하여 스크롤 포지션이 이상해지는 이슈가 발생하여 최상단 indexPath로 스크롤 될 수 있도록 대응</li>
+              </ul>
+            </li>
+            <li>용량이 큰 이미지로 에피소드 제작 시 크래시가 발생하여 앱 내 모든 이미지에 대해 WebP 포맷 제시 및 적용</li>
+            <li>AVFoundation, AVPlayer, AVAudioSession을 활용하여 배경음악 및 효과음악 재생 기능 개발
+              <ul>
+                <li>에피소드에 사용되는 오디오 개수가 많을 경우 다운로드 로딩이 오래 걸리는 이슈가 발생하여 제한 개수를 두어 다운 받고, 나머지는 백그라운드에서 다운로드받도록 개선</li>
+              </ul>
+            </li>
+            <li>Alamofire RequestInterceptor를 이용하여 네트워크 모듈 개선</li>
+          </ul>
+
+          <div class="tech-group">
+            <div class="tech-label">Tech Stack</div>
+            <div class="tech-stack">
+              <span>MVC</span>
+              <span>AVFoundation</span>
+              <span>IAP</span>
+            </div>
+          </div>
+          <div class="tech-group">
+            <div class="tech-label">3rd Party Library</div>
+            <div class="tech-stack">
+              <span>RxSwift</span>
+              <span>KingfisherWebP</span>
+              <span>Alamofire</span>
+            </div>
+          </div>
+          <div class="tech-group">
+            <div class="tech-label">Development Tool</div>
+            <div class="tech-stack">
+              <span>Zeplin</span>
+            </div>
+          </div>
+          <div class="tech-group">
+            <div class="tech-label">etc.</div>
+            <div class="tech-stack">
+              <span>Airbridge</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Other Experience -->
+  <section>
+    <div class="container">
+      <h2>Other Experience</h2>
+
+      <div class="other-item">
+        <div class="exp-period">2022.03 — 2022.07</div>
+        <div>
+          <h3><a href="https://prography.org/" target="_blank" style="color:#fff;text-decoration:none;border-bottom:1px solid #404040;">Prography 7th</a></h3>
+          <div class="other-role">iOS Developer</div>
+          <p>영양제 섭취 알림 서비스 <a href="https://github.com/prography7-team6-pilit" target="_blank" style="color:#a3a3a3;text-decoration:none;border-bottom:1px solid #333;">pilit</a> — 영양제 섭취를 잊지 않기 위해 알람 서비스 제공, 일별, 월별 섭취 캘린더 제공</p>
+        </div>
+      </div>
+
+      <div class="other-item">
+        <div class="exp-period">2021.11 — 2022.01</div>
+        <div>
+          <h3>요소수 재고 현황 조회 서비스 <a href="https://github.com/kch1285/Urea-Solution-Inventory-Status" target="_blank" style="color:#fff;text-decoration:none;border-bottom:1px solid #404040;">요소수어딨수</a></h3>
+          <div class="other-role">기획, 디자인, iOS 클라이언트 개발</div>
+          <p>요소수 대란 당시 전국의 요소수 정보제공 주유소의 요소수 재고 현황 조회 서비스 개발</p>
+          <ul class="about-bullets" style="margin-top:0.5rem;">
+            <li>주유소의 전화번호와 위치, 가격, 재고현황 등의 정보 제공</li>
+            <li>주유소로 길 안내하는 서비스(카카오내비) 제공</li>
+            <li>주유소 즐겨찾기 편의성 제공</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="other-item">
+        <div class="exp-period">2022.02 — 2022.03</div>
+        <div>
+          <h3>야곰 x Bithumb 테크캠프</h3>
+          <div class="other-role">빗썸 테크캠프 교육 수강 및 빗썸 iOS 클론 앱 개발</div>
+          <p>빗썸 iOS 클론 앱 <a href="https://github.com/kch1285/Fake-Bithumb-Assignment" target="_blank" style="color:#a3a3a3;text-decoration:none;border-bottom:1px solid #333;">FakeThumb</a> 개발</p>
+          <ul class="about-bullets" style="margin-top:0.5rem;">
+            <li>빗썸 Public API, WebSocket API를 사용하여 빗썸 클론 앱 개발</li>
+            <li>빗썸의 가상화폐 데이터 제공, 가상화폐 가격의 차트, 호가 정보, 체결현황, 입출금 현황 정보 제공</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="other-item">
+        <div class="exp-period">2021.08</div>
+        <div>
+          <h3>정보처리기사</h3>
+          <p>정보처리기사 자격증 취득</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section>
+    <div class="container">
+      <h2>Skills</h2>
+      <div class="tech-stack" style="gap:0.5rem;">
+        <span>Swift</span>
+        <span>Combine</span>
+        <span>MVC</span>
+        <span>MVVM</span>
+        <span>Git</span>
+        <span>IAP</span>
+        <span>AVFoundation</span>
+        <span>Asynchronous Programming</span>
+        <span>Coordinator</span>
+        <span>Server-driven UI</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section>
+    <div class="container">
+      <h2>Education</h2>
+      <div class="edu-item">
+        <div class="exp-period">2015.03 — 2022.02</div>
+        <div>
+          <h3>한양대학교 ERICA</h3>
+          <p>컴퓨터공학과</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section>
+    <div class="container">
+      <h2>Contact</h2>
+      <div class="contact-grid">
+        <a href="mailto:rkdclgns1285@gmail.com">rkdclgns1285@gmail.com</a>
+        <a href="tel:010-6589-1286">010-6589-1286</a>
+        <a href="https://github.com/kch1285" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/chihoon-kang" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 강치훈. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
